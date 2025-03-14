@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiAppPrueba.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"
+    Title="LoginView"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions=".3*, .7*">
+        <Image Aspect="AspectFill" Source="fondo_login.png" />
+        <Grid BackgroundColor="#2475b5" Opacity=".7 ">
+            <Image
+                Margin="15,0,0,0"
+                Aspect="AspectFit"
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Source="logocontpaqi_neg.png"
+                WidthRequest="240" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <RoundRectangle
+                Margin="-5,-30,-5,-2"
+                CornerRadius="30,30,0,0"
+                Fill="White" />
+            <Grid Padding="20" />
+
+            <VerticalStackLayout Margin="30,0,30,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="bold"
+                    FontSize="Medium"
+                    Text="Bienvenido!"
+                    TextColor="#2D2D2D" />
+                <Label
+                    FontFamily="regular"
+                    Text="Inicia sesión para continuar"
+                    TextColor="#A3A3A4" />
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
+                    <RoundRectangle
+                        Background="#EDEBF6"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="50" />
+                    <Image Margin="8" HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="SolidFont"
+                                Glyph="{x:Static faSolidIcons:FaSolidIcons.Envelope}"
+                                Size="24"
+                                Color="#0c77ca" />
+                        </Image.Source>
+                    </Image>
+                    <Entry
+                        Grid.Column="1"
+                        Placeholder="Usuario"
+                        Text=""
+                        TextColor="#02223b"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
+                    <RoundRectangle
+                        Background="#EDEBF6"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="50" />
+                    <Image Margin="8" HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="SolidFont"
+                                Glyph="{x:Static faSolidIcons:FaSolidIcons.Key}"
+                                Size="24"
+                                Color="#0c77ca" />
+                        </Image.Source>
+                    </Image>
+                    <Entry
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Placeholder="Contraseña"
+                        Text=""
+                        TextColor="#02223b"
+                        VerticalOptions="Center" />
+
+                </Grid>
+                <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="#005faa"
+                    Clicked="GoEmployeesView"
+                    FontFamily="Bold"
+                    FontSize="Small"
+                    HeightRequest="44"
+                    Text="Iniciar Sesión"
+                    TextColor="#FBF6FD" />
+
+                <Label
+                    Margin="0,20,0,-10"
+                    HorizontalOptions="Center"
+                    Text="Olvidaste tu contraseña?"
+                    TextColor="Blue"
+                    TextDecorations="Underline" />
+
+                <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="#f2f7ff"
+                    Clicked="GoEmployeesView"
+                    HeightRequest="44"
+                    Text="Crea tu cuenta de usuario"
+                    TextColor="#02223b" />
+
+            </VerticalStackLayout>
+
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

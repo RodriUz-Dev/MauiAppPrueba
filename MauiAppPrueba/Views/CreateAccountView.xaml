@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppPrueba.Views.CreateAccountView"
+             xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"
+             NavigationPage.HasNavigationBar="False"
+             Title="CreateAccountView"             
+             >
+    <Grid RowDefinitions=".3*, .7*">
+        <Image Source="fondo_login.png" Aspect="AspectFill"/>
+        <Grid BackgroundColor="#2475b5" Opacity=".7 ">
+            <Image Source="logocontpaqi_neg.png" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               Margin="15,0,0,0"
+               HeightRequest="150" WidthRequest="240"
+               />
+        </Grid>
+        <Grid Grid.Row="1">
+            <RoundRectangle Margin="-5, -30, -5, -2"
+                        CornerRadius="30,30,0,0"
+                        Fill="White"/>
+            <Grid Padding="20"></Grid>
+
+            <VerticalStackLayout Margin="30,0,30,0">
+                <Label FontAttributes="Bold"
+                   FontFamily="bold"
+                   FontSize="Medium"
+                   Text="Crea tu cuenta de usuario!"
+                   TextColor="#2D2D2D"/>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
+                    <RoundRectangle Background="#EDEBF6"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="50"/>
+                                    <Image HorizontalOptions="Center" Margin="8">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="SolidFont"
+                                            Glyph="{x:Static faSolidIcons:FaSolidIcons.User }"
+                                            Size="24"
+                                            Color="#0c77ca"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Entry Grid.Column="1"
+                                    Placeholder="Nombre del Usuario"                           
+                                    Text=""  
+                                    TextColor="#02223b"                                  
+                                    VerticalOptions="Center"/>                          
+                </Grid>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
+                    <RoundRectangle Background="#EDEBF6"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="50"/>
+                    <Image HorizontalOptions="Center" Margin="8">
+                        <Image.Source>
+                            <FontImageSource FontFamily="SolidFont"
+                                         Glyph="{x:Static faSolidIcons:FaSolidIcons.Envelope }"
+                                         Size="24"
+                                         Color="#0c77ca"/>
+                        </Image.Source>
+                    </Image>
+                    <Entry Grid.Column="1"
+                       Placeholder="E-mail del Usuario"                           
+                       Text=""
+                       
+                       TextColor="#02223b"
+                       VerticalOptions="Center"/>
+
+                </Grid>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
+                    <RoundRectangle Background="#EDEBF6"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="50"/>
+                    <Image HorizontalOptions="Center" Margin="8">
+                        <Image.Source>
+                            <FontImageSource FontFamily="SolidFont"
+                         Glyph="{x:Static faSolidIcons:FaSolidIcons.Key }"
+                         Size="24"
+                         Color="#0c77ca"/>
+                        </Image.Source>
+                    </Image>
+                    <Entry Grid.Column="1"
+                       Placeholder="Contraseña"    
+                       IsPassword="True"
+                       Text=""                           
+                        TextColor="#02223b"
+                       VerticalOptions="Center"/>
+
+                </Grid>
+                <Button x:Name="CreateAccount"         
+                        Clicked="GoLoginView"
+                        Margin="0,30,0,0"
+                        BackgroundColor="#005faa"
+                        HeightRequest="44"
+                        Text="Crear Cuenta"
+                        TextColor="#FBF6FD"                        
+                        />               
+
+            </VerticalStackLayout>
+
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
