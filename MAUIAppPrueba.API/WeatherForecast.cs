@@ -1,4 +1,4 @@
-namespace MAUIAppPrueba.API
+namespace MauiAppPrueba.API
 {
     public class WeatherForecast
     {

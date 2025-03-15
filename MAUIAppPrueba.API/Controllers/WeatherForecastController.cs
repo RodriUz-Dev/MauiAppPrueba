@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MAUIAppPrueba.API.Controllers
+namespace MauiAppPrueba.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

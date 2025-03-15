@@ -1,4 +1,4 @@
-using Domain.Entities;
+using MauiAppPrueba.Domain.Entities;
 
 namespace MauiAppPrueba.Views;
 
