@@ -35,7 +35,7 @@ namespace MauiAppPrueba.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "GetByIdAsync")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             var employee = await _employeeService.GetByIdAsync(id);
@@ -51,7 +51,7 @@ namespace MauiAppPrueba.API.Controllers
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        [HttpPost(Name = nameof(CreateAsync))]
+        [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] Employee employee)
         {
             var newEmployee = await _employeeService.CreateAsync(employee);
@@ -59,7 +59,7 @@ namespace MauiAppPrueba.API.Controllers
             {
                 return BadRequest();
             }
-            return CreatedAtAction("GetByIdAsync", new { id = newEmployee.Id }, newEmployee);
+            return Ok(newEmployee);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace MauiAppPrueba.API.Controllers
         /// <param name="id"></param>
         /// <param name="employee"></param>
         /// <returns></returns>
-        [HttpPut("{id:int}", Name = nameof(UpdateAsync))]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateAsync(int id, [FromBody] Employee employee)
         {
             var result = await _employeeService.UpdateAsync(id, employee);
@@ -79,8 +79,13 @@ namespace MauiAppPrueba.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete an employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             var result = await _employeeService.DeleteAsync(id);
             if (result == 0)

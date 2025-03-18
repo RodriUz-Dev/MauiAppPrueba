@@ -20,6 +20,8 @@ namespace MauiAppPrueba.API.ServiceExtension
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeServices, EmployeeService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

@@ -1,16 +1,20 @@
+using MauiAppPrueba.ViewModels;
+
 namespace MauiAppPrueba.Views;
 
 public partial class CreateAccountView : ContentPage
 {
-	public CreateAccountView()
+	public CreateAccountView(UsersViewModel viewModel)
 	{
 		InitializeComponent();
-	}
-
-    private async void GoLoginView(object sender, EventArgs e)
-    {
-        await Navigation.PopAsync();
+        BindingContext = viewModel;
     }
 
-    
+
+    //private async void GoLoginView(object sender, EventArgs e)
+    //{
+    //    await Shell.Current.Navigation.PopAsync();
+    //}
 }
+
+    

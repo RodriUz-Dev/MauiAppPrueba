@@ -4,44 +4,35 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"
-    Title="EmployeesView"
+    Title="Empleados"
+    Shell.BackgroundColor="#024eb2"
+    Shell.TitleColor="White"
+    Shell.ForegroundColor="White"
     BackgroundColor="#024eb2" 
-    NavigationPage.HasNavigationBar="False">
+    Shell.NavBarIsVisible="True"
+    NavigationPage.HasNavigationBar="True">
 
-    <Grid RowDefinitions=".2*, .8*">
+    <ContentPage.Resources>
+        <Style TargetType="HorizontalStackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions=".15*, .85*">
         <VerticalStackLayout Spacing="10">
-            <Label
-                Margin="25,20,0,0"
-                FontAttributes="Bold"
-                FontFamily="bold"
-                FontSize="Large"
-                Text="Empleados"
-                TextColor="White" />
-            <Grid Margin="25,10,0,0" ColumnDefinitions="Auto, *">
-                <Label
-                    FontFamily="regular"
-                    FontSize="Medium"
-                    Text="Jhon Smith"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-                <Image
-                    Grid.Column="1"
-                    Margin="15,0,0,0"
-                    Aspect="AspectFill"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Center"
-                    WidthRequest="15">
-                    <Image.Source>
-                        <FontImageSource
-                            FontFamily="SolidFont"
-                            Glyph="{x:Static faSolidIcons:FaSolidIcons.ChevronDown}"
-                            Size="15"
-                            Color="White" />
-                    </Image.Source>
-
-                </Image>
-
-            </Grid>
+            
 
             <Grid Margin="25,5,0,0" ColumnDefinitions=".9*, .1*">
                 <Border Padding="0" StrokeShape="RoundRectangle 8,8,8,8">
@@ -75,158 +66,163 @@
 
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" Margin="0,5,1,0">
+        <Grid Grid.Row="1" Margin="0,-35,1,0">
             <RoundRectangle BackgroundColor="#F2F1F6" CornerRadius="25,25,0,0" />
 
-            <CollectionView ItemsSource="{Binding Employees}">
-                <!--<CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Empleado 1</x:String>
-                        <x:String>Empleado 2</x:String>
-                        <x:String>Empleado 3</x:String>
-                        <x:String>Empleado 4</x:String>
-                        <x:String>Empleado 5</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>-->
+            <CollectionView ItemsSource="{Binding Employees}" 
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding GoEditEmployeeCommand}"
+                            SelectedItem="{Binding SelectedItem}"
+                            SelectionChangedCommandParameter="{Binding .}"                            
+                            x:Name="collectionView">                
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Vertical"/>                    
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="20,5,20,0"
-                              HeightRequest="250"
-                              RowDefinitions=".6*, .4*">
-                            <RoundRectangle Grid.RowSpan="2"
-                                            Background="White"
-                                            CornerRadius="10">
-                                <RoundRectangle.Shadow>
-                                    <Shadow Brush="#CFD0D4"
-                                            Opacity="0.8"
-                                            Offset="10,10"/>
-                                </RoundRectangle.Shadow>
-                            </RoundRectangle>
-                            
-                            <Grid ColumnDefinitions=".4*,.2*,.4*"
-                                  RowDefinitions=".6*,.4*">
-                                <Image 
-                                    Grid.RowSpan="2"
-                                    Grid.ColumnSpan="3"
-                                    Aspect="AspectFill"
-                                    Source="banneremp.png" />
-                           
-                                <Grid Grid.Row="0"
-                                      Margin="0,30,0,0"
-                                      HeightRequest="120"
-                                      HorizontalOptions="Start"
-                                      VerticalOptions="Start"
-                                      WidthRequest="120">
-                                    <Border Margin="0,0,0,10"
-                                            HeightRequest="120"                                        
-                                            HorizontalOptions="Center"
-                                            StrokeShape="Ellipse"
-                                            StrokeThickness="4">
-                                        <Border.Stroke>
-                                            <LinearGradientBrush EndPoint="0,1">
-                                                <GradientStop Color="#FEFEEF" Offset="0.0"/>
-                                                <GradientStop Color="#EBD570" Offset="0.25"/>
-                                                <GradientStop Color="#FF94C3" Offset="0.5"/>
-                                                <GradientStop Color="#A573E4" Offset="0.75"/>
-                                                <GradientStop Color="#A9E2EE" Offset="1.0"/>
-                                            </LinearGradientBrush>
-                                        </Border.Stroke>
-                                        <Image HorizontalOptions="Center"
-                                               Source="{Binding ImageUrl}"/>
+                        <HorizontalStackLayout>
+                            <!--<HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer                                        
+                                    Command="{Binding BindingContext.GoEditEmployeeCommand, Source={x:Reference collectionView}}" 
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
 
-                                    </Border>                                
+                            </HorizontalStackLayout.GestureRecognizers>-->
+                            <Grid Padding="20,5,20,0"
+                                  HeightRequest="250"
+                                  RowDefinitions=".6*, .4*">
+                                <RoundRectangle Grid.RowSpan="2"
+                                                Background="White"
+                                                CornerRadius="10">
+                                    <RoundRectangle.Shadow>
+                                        <Shadow Brush="#CFD0D4"
+                                                Opacity="0.8"
+                                                Offset="10,10"/>
+                                    </RoundRectangle.Shadow>
+                                </RoundRectangle>
+
+                                <Grid ColumnDefinitions=".4*,.2*,.4*"
+                                      RowDefinitions=".6*,.4*">
+                                    <Image 
+                                        Grid.RowSpan="2"
+                                        Grid.ColumnSpan="3"
+                                        Aspect="AspectFill"
+                                        Source="banneremp.png" />
+
+                                    <Grid Grid.Row="0"
+                                          Margin="0,30,0,0"
+                                          HeightRequest="120"
+                                          HorizontalOptions="Start"
+                                          VerticalOptions="Start"
+                                          WidthRequest="120">
+                                        <Border Margin="0,0,0,10"
+                                                HeightRequest="120"                                        
+                                                HorizontalOptions="Center"
+                                                StrokeShape="Ellipse"
+                                                StrokeThickness="4">
+                                            <Border.Stroke>
+                                                <LinearGradientBrush EndPoint="0,1">
+                                                    <GradientStop Color="#FEFEEF" Offset="0.0"/>
+                                                    <GradientStop Color="#EBD570" Offset="0.25"/>
+                                                    <GradientStop Color="#FF94C3" Offset="0.5"/>
+                                                    <GradientStop Color="#A573E4" Offset="0.75"/>
+                                                    <GradientStop Color="#A9E2EE" Offset="1.0"/>
+                                                </LinearGradientBrush>
+                                            </Border.Stroke>
+                                            <Image HorizontalOptions="Center"
+                                                   Source="{Binding ImageUrl}"/>
+
+                                        </Border>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="2">
+                                        <RoundRectangle 
+                                            CornerRadius="10"
+                                            Fill="#F8F8F7"
+                                            HeightRequest="35"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            WidthRequest="100"/>
+                                        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Margin="0,0,15,0"
+                                                   VerticalOptions="Center"
+                                                   WidthRequest="15">
+                                                <Image.Source>
+                                                    <FontImageSource 
+                                                        FontFamily="SolidFont"
+                                                        Glyph="{x:Static faSolidIcons:FaSolidIcons.IdBadge}"
+                                                        Color="Black"
+                                                        Size="24"/>
+                                                </Image.Source>
+                                            </Image>
+                                            <Label
+                                                Grid.Row="1"
+                                                FontFamily="black"
+                                                Text="453781"
+                                                TextColor="#197180"
+                                                VerticalOptions="Center"/>
+
+
+                                        </HorizontalStackLayout>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Row="1" Grid.Column="2">
-                                    <RoundRectangle 
-                                        CornerRadius="10"
-                                        Fill="#F8F8F7"
-                                        HeightRequest="35"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        WidthRequest="100"/>
-                                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Image Margin="0,0,15,0"
-                                               VerticalOptions="Center"
-                                               WidthRequest="15">
+
+                                <Grid Grid.Row="1" Margin="0,5,0,0" Padding="10"
+                                      ColumnDefinitions="*,*,*"
+                                      RowDefinitions="*,*,*">
+                                    <Label Grid.ColumnSpan="3"
+                                           Grid.Row="0"                                       
+                                       
+                                           FontFamily="bold"
+                                           FontSize="Large"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding Name}"
+                                           TextColor="Black"/>
+
+                                    <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start" >
+                                        <Image Margin="0,0,10,0"
+                                           
+                                               VerticalOptions="Start"
+                                               WidthRequest="20">
                                             <Image.Source>
                                                 <FontImageSource 
                                                     FontFamily="SolidFont"
-                                                    Glyph="{x:Static faSolidIcons:FaSolidIcons.IdBadge}"
+                                                    Glyph="{x:Static faSolidIcons:FaSolidIcons.CalendarDays}"
                                                     Color="Black"
                                                     Size="24"/>
                                             </Image.Source>
                                         </Image>
-                                        <Label
-                                            Grid.Row="1"
-                                            FontFamily="black"
-                                            Text="453781"
-                                            TextColor="#197180"
-                                            VerticalOptions="Center"/>
+                                        <Label 
+                                               Margin="0,5,10,0"
+                                               FontFamily="black"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Start"
+                                               Text="{Binding EntryDate, StringFormat='{0:dd-MMM-yyyy}'}"
+                                               TextColor="#197180" />
+                                    </HorizontalStackLayout>
 
-
+                                    <HorizontalStackLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" >
+                                        <Image Margin="0,0,10,0"           
+                                               VerticalOptions="Start"
+                                               WidthRequest="30">
+                                            <Image.Source>
+                                                <FontImageSource 
+                                                    FontFamily="SolidFont"
+                                                    Glyph="{x:Static faSolidIcons:FaSolidIcons.MoneyCheckDollar}"
+                                                    Color="Black"
+                                                    />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label 
+                                               Margin="0,5,10,0"
+                                               FontFamily="black"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Start"
+                                               Text="{Binding Salary, StringFormat='{0:C}'}"
+                                               TextColor="#197180" />
                                     </HorizontalStackLayout>
                                 </Grid>
                             </Grid>
-
-                            <Grid Grid.Row="1" Margin="0,5,0,0" Padding="10"
-                                  ColumnDefinitions="*,*,*"
-                                  RowDefinitions="*,*,*">
-                                <Label Grid.ColumnSpan="3"
-                                       Grid.Row="0"                                       
-                                       
-                                       FontFamily="bold"
-                                       FontSize="Large"
-                                       HorizontalTextAlignment="Start"
-                                       Text="{Binding Name}"
-                                       TextColor="Black"/>
-
-                                <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start" >
-                                    <Image Margin="0,0,10,0"
-                                           
-                                           VerticalOptions="Start"
-                                           WidthRequest="20">
-                                        <Image.Source>
-                                            <FontImageSource 
-                                                FontFamily="SolidFont"
-                                                Glyph="{x:Static faSolidIcons:FaSolidIcons.CalendarDays}"
-                                                Color="Black"
-                                                Size="24"/>         
-                                        </Image.Source>
-                                    </Image>
-                                    <Label 
-                                           Margin="0,5,10,0"
-                                           FontFamily="black"
-                                           VerticalOptions="Start"
-                                           HorizontalOptions="Start"
-                                           Text="{Binding EntryDate, StringFormat='{0:dd-MMM-yyyy}'}"
-                                           TextColor="#197180" />     
-                                </HorizontalStackLayout>
-
-                                <HorizontalStackLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" >
-                                    <Image Margin="0,0,10,0"           
-                                           VerticalOptions="Start"
-                                           WidthRequest="30">           
-                                        <Image.Source>
-                                            <FontImageSource 
-                                                FontFamily="SolidFont"
-                                                Glyph="{x:Static faSolidIcons:FaSolidIcons.MoneyCheckDollar}"
-                                                Color="Black"
-                                                /> 
-                                        </Image.Source>
-                                    </Image>
-                                    <Label 
-                                           Margin="0,5,10,0"
-                                           FontFamily="black"
-                                           VerticalOptions="Start"
-                                           HorizontalOptions="Start"
-                                           Text="{Binding Salary, StringFormat='{0:C}'}"
-                                           TextColor="#197180" />
-                                </HorizontalStackLayout>                                                                                                        
-                            </Grid>                            
-                        </Grid>                        
+                        </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -236,7 +232,7 @@
                     CornerRadius="25"
                     Margin="30,5,30,10"
                     BackgroundColor="#059229"
-                    Clicked="GoLoginView"
+                    Command="{Binding GoNewEmployeeCommand}"
                     FontFamily="Bold"
                     FontSize="Medium"
                     HeightRequest="65"
@@ -254,7 +250,7 @@
                     CornerRadius="25"
                     Margin="30,5,30,10"
                     BackgroundColor="#fa5315"
-                    Clicked="GoLoginView"
+                    Command="{Binding GoLoginViewCommand}"
                     FontFamily="Bold"
                     FontSize="Medium"
                     HeightRequest="65"
