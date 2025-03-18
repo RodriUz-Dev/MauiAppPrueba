@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppPrueba.Views.EditEmployeeView"
+             xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"      
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Toolkit.NumericEntry;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+             Title="Empleado"
+             Shell.BackgroundColor="#024eb2"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             BackgroundColor="#024eb2" 
+             Shell.NavBarIsVisible="True"
+             NavigationPage.HasNavigationBar="True" 
+             >
+    
+    <Grid RowDefinitions=".05*, .95*">
+        
+
+        <Grid Grid.Row="1" Margin="0,-35,1,0">
+            <RoundRectangle BackgroundColor="White" CornerRadius="25,25,0,0" />
+            <ScrollView>
+                <VerticalStackLayout Padding="15,-20,15,0">
+                    <ActivityIndicator 
+                        TranslationY="250"                        
+                        IsVisible="Visible"
+                        IsRunning="False"
+                        Color="DimGray"
+                        HeightRequest="60"/>
+
+                    <Grid RowDefinitions="auto, auto, auto, auto, *" RowSpacing="20">
+
+                        <StackLayout Margin="0,-10,0,0" Grid.Row="0">
+                            <Label Margin="20,0,0,0"
+                                   FontFamily="regular"
+                                   TextColor="#3d3d3d"                           
+                                   FontSize="Caption"                            
+                                   Text="Número"/>
+                            <Border Margin="10,0,10,0"                               
+                                    HorizontalOptions="FillAndExpand"                                                                                        
+                                    StrokeShape="RoundRectangle 8,8,8,8"
+                                    StrokeThickness="1">
+                                <Entry Margin="5,0,5,0"                                
+                                       TextColor="#2c2c2c"
+                                       Text="{Binding Code}"                               
+                                       PlaceholderColor="#8f8f8f"                          
+                                       Placeholder="Introduce el número del empleado"/>
+                            </Border>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,0,0,0" Grid.Row="1">
+                            <Label Margin="20,0,0,0"
+                                   FontFamily="regular"
+                                   TextColor="#3d3d3d"                           
+                                   FontSize="Caption"                            
+                                   Text="Nombre"/>
+                            <Border Margin="10,0,10,0"                               
+                                    HorizontalOptions="FillAndExpand"                                                                                        
+                                    StrokeShape="RoundRectangle 8,8,8,8"
+                                    StrokeThickness="1">
+                                <Entry Margin="5,0,5,0"                                
+                                       TextColor="#2c2c2c"
+                                       Text="{Binding Name}"                               
+                                       PlaceholderColor="#8f8f8f"                          
+                                       Placeholder="Introduce el nombre del empleado"/>
+                            </Border>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,0,0,0" Grid.Row="2">
+                            <Label Margin="20,0,0,0"
+                                   FontFamily="regular"
+                                   TextColor="#3d3d3d"                           
+                                   FontSize="Caption"                            
+                                   Text="Ingreso"/>
+                            <Border Margin="10,0,10,0"                               
+                                    HorizontalOptions="FillAndExpand"                                                                                        
+                                    StrokeShape="RoundRectangle 8,8,8,8"
+                                    StrokeThickness="1">
+                                <Entry Margin="5,0,5,0"                                
+                                       TextColor="#2c2c2c"
+                                       Text="{Binding EntryDate}"                               
+                                       PlaceholderColor="#8f8f8f"                          
+                                       Placeholder="Introduce la fecha de ingreso"/>
+                            </Border>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,0,0,0" Grid.Row="3">
+                            <Label Margin="20,0,0,0"
+                                   FontFamily="regular"
+                                   TextColor="#3d3d3d"                           
+                                   FontSize="Caption"                            
+                                   Text="Sueldo Diario"/>
+                            <Border Margin="10,0,10,0"                               
+                                    HorizontalOptions="FillAndExpand"                                                                                        
+                                    StrokeShape="RoundRectangle 8,8,8,8"
+                                    StrokeThickness="1">
+                                <editors:SfNumericEntry ShowBorder="False"                                     
+                                    Margin="10,10,10,0" 
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="End"
+                                    Placeholder="0.00"
+                                    Value="{Binding Salary}" 
+                                    CustomFormat="C2" />        
+                            </Border>                            
+                        </StackLayout>
+
+                        <StackLayout Margin="0,0,0,0" Grid.Row="4">
+                            <Label Margin="20,0,0,0"
+                                   FontFamily="regular"
+                                   TextColor="#3d3d3d"                           
+                                   FontSize="Caption"                            
+                                   Text="Url de foto"/>
+                            <Border Margin="10,0,10,0"                               
+                                    HorizontalOptions="FillAndExpand"                                                                                        
+                                    StrokeShape="RoundRectangle 8,8,8,8"
+                                    StrokeThickness="1">
+                                <Entry Margin="5,0,5,0"                                
+                                       TextColor="#2c2c2c"
+                                       Text="{Binding ImageUrl}"                               
+                                       PlaceholderColor="#8f8f8f"                          
+                                       Placeholder="Introduce la url de la foto del empleado"/>
+                            </Border>
+
+                            <Border Margin="0,20,0,10"
+                                            HeightRequest="160"                                        
+                                            HorizontalOptions="Center"
+                                            StrokeShape="Ellipse"
+                                            StrokeThickness="4">
+                                <Border.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="#FEFEEF" Offset="0.0"/>
+                                        <GradientStop Color="#EBD570" Offset="0.25"/>
+                                        <GradientStop Color="#FF94C3" Offset="0.5"/>
+                                        <GradientStop Color="#A573E4" Offset="0.75"/>
+                                        <GradientStop Color="#A9E2EE" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Border.Stroke>
+                                <Image HorizontalOptions="Center"
+                                               Source="empleadodefault"/>
+                            </Border>
+
+                        </StackLayout>
+
+
+
+
+
+                    </Grid>
+
+                    <!--<Button x:Name="CreateAccount"         
+                        Command="{Binding CreateCommand}"
+                        Margin="10,30,10,0"
+                        BackgroundColor="#099025"
+                        HeightRequest="44"
+                        Text="Crear Cuenta"
+                        TextColor="#FBF6FD"                        
+                        >
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="SolidFont"
+                            Size="60"
+                            Glyph="{x:Static faSolidIcons:FaSolidIcons.CircleCheck}"
+                            Color="#FBF6FD"/>
+                        </Button.ImageSource>
+                    </Button>-->
+
+
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <VerticalStackLayout VerticalOptions="End" HorizontalOptions="End" Margin="0,0,0,30">
+                <Button
+                    CornerRadius="25"
+                    Margin="30,5,30,10"
+                    BackgroundColor="#059229"
+                    Command="{Binding SaveEmployeeCommand}"
+                    FontFamily="Bold"
+                    FontSize="Medium"
+                    HeightRequest="65"
+                    WidthRequest="65"
+                    Text=""
+                    TextColor="#FBF6FD"
+                    VerticalOptions="End">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                    Glyph="{x:Static faSolidIcons:FaSolidIcons.Check}"
+                    Color="White"/>
+                    </Button.ImageSource>
+                </Button>
+                <Button
+                    CornerRadius="25"
+                    Margin="30,5,30,10"
+                    BackgroundColor="Red"
+                    Command="{Binding DeleteEmployeeCommand}"
+                    FontFamily="Bold"
+                    FontSize="Medium"
+                    HeightRequest="65"
+                    WidthRequest="65"                                      
+                    Text=""
+                    TextColor="#FBF6FD"
+                    VerticalOptions="End">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                        Glyph="{x:Static faSolidIcons:FaSolidIcons.TrashCan}"
+                        Color="White"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <!--<Button
+                    CornerRadius="25"
+                    Margin="30,5,30,10"
+                    BackgroundColor="#fa5315"
+                    Command="{Binding GoBackCommand}"
+                    FontFamily="Bold"
+                    FontSize="Medium"
+                    HeightRequest="65"
+                    WidthRequest="65"                                      
+                    Text=""
+                    TextColor="#FBF6FD"
+                    VerticalOptions="End">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                        Glyph="{x:Static faSolidIcons:FaSolidIcons.ArrowLeft}"
+                        Color="White"/>
+                    </Button.ImageSource>
+                </Button>-->
+            </VerticalStackLayout>
+
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -28,7 +28,6 @@
                    FontSize="Medium"
                    Text="Crea tu cuenta de usuario!"
                    TextColor="#2D2D2D"/>
-
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
                     <RoundRectangle Background="#EDEBF6"
                                 CornerRadius="10"
@@ -44,11 +43,19 @@
                                             Color="#0c77ca"/>
                                         </Image.Source>
                                     </Image>
-                                    <Entry Grid.Column="1"
+                    <Border Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,0,10,0"                               
+                            HorizontalOptions="FillAndExpand"                                                                                        
+                            StrokeShape="RoundRectangle 8,8,8,8"
+                            StrokeThickness="1">
+
+                        <Entry Grid.Column="1"
                                     Placeholder="Nombre del Usuario"                           
-                                    Text=""  
+                                    Text="{Binding Name}"  
                                     TextColor="#02223b"                                  
-                                    VerticalOptions="Center"/>                          
+                                    VerticalOptions="Center"/>
+                    </Border>
                 </Grid>
 
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*, .8*">
@@ -66,12 +73,18 @@
                                          Color="#0c77ca"/>
                         </Image.Source>
                     </Image>
-                    <Entry Grid.Column="1"
-                       Placeholder="E-mail del Usuario"                           
-                       Text=""
-                       
-                       TextColor="#02223b"
-                       VerticalOptions="Center"/>
+                    <Border Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,0,10,0"                               
+                            HorizontalOptions="FillAndExpand"                                                                                        
+                            StrokeShape="RoundRectangle 8,8,8,8"
+                            StrokeThickness="1">
+                        <Entry Grid.Column="1"
+                               Placeholder="E-mail del Usuario"                           
+                               Text="{Binding Email}"                       
+                               TextColor="#02223b"
+                               VerticalOptions="Center"/>   
+                    </Border>
 
                 </Grid>
 
@@ -90,22 +103,37 @@
                          Color="#0c77ca"/>
                         </Image.Source>
                     </Image>
-                    <Entry Grid.Column="1"
-                       Placeholder="Contraseña"    
-                       IsPassword="True"
-                       Text=""                           
-                        TextColor="#02223b"
-                       VerticalOptions="Center"/>
+                    <Border Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,0,10,0"                               
+                            HorizontalOptions="FillAndExpand"                                                                                        
+                            StrokeShape="RoundRectangle 8,8,8,8"
+                            StrokeThickness="1">
+
+                        <Entry Grid.Column="1"
+                               Placeholder="Contraseña"    
+                               IsPassword="True"
+                               Text="{Binding Password}"                           
+                                TextColor="#02223b"
+                               VerticalOptions="Center"/>
+                    </Border>
 
                 </Grid>
                 <Button x:Name="CreateAccount"         
-                        Clicked="GoLoginView"
+                        Command="{Binding CreateCommand}"
                         Margin="0,30,0,0"
-                        BackgroundColor="#005faa"
+                        BackgroundColor="#099025"
                         HeightRequest="44"
                         Text="Crear Cuenta"
                         TextColor="#FBF6FD"                        
-                        />               
+                        >
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                            Size="60"
+                            Glyph="{x:Static faSolidIcons:FaSolidIcons.CircleCheck}"
+                            Color="#FBF6FD"/>
+                    </Button.ImageSource>
+                </Button>
 
             </VerticalStackLayout>
 

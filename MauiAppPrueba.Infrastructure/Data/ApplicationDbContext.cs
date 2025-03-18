@@ -9,5 +9,6 @@ namespace MauiAppPrueba.Infrastructure.Data
         {
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; } = default!;
     }
 }

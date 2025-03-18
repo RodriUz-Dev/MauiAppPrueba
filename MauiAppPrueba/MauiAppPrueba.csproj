@@ -64,13 +64,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Include="Resources\appsettings.json">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiFont Include="Utilities\FaSolidIcons.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Plugin.Maui.Biometric" Version="0.0.2" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,6 +90,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\CreateAccountView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EditEmployeeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EmployeesView.xaml">

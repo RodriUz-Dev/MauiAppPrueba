@@ -3,10 +3,18 @@
     x:Class="MauiAppPrueba.Views.LoginView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"
-    Title="LoginView"
-    NavigationPage.HasNavigationBar="False">
+    xmlns:faSolidIcons="clr-namespace:MauiAppPrueba.Utilities"    
+    Title="LoginView" 
+    NavigationPage.HasNavigationBar="False">   
+    
+
     <Grid RowDefinitions=".3*, .7*">
+        <ActivityIndicator 
+                TranslationY="250"                        
+                IsVisible="Visible"
+                IsRunning="False"
+                Color="DimGray"
+                HeightRequest="60"/>
         <Image Aspect="AspectFill" Source="fondo_login.png" />
         <Grid BackgroundColor="#2475b5" Opacity=".7 ">
             <Image
@@ -53,12 +61,21 @@
                                 Color="#0c77ca" />
                         </Image.Source>
                     </Image>
-                    <Entry
-                        Grid.Column="1"
-                        Placeholder="Usuario"
-                        Text=""
-                        TextColor="#02223b"
-                        VerticalOptions="Center" />
+                    <Border Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,0,10,0"                               
+                            HorizontalOptions="FillAndExpand"                                                                                        
+                            StrokeShape="RoundRectangle 8,8,8,8"
+                            StrokeThickness="1">
+                            <Entry Margin="5,0,0,0"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Placeholder="Usuario"
+                                Text="{Binding Email}"
+                                Keyboard="Email"
+                                TextColor="#02223b"
+                                VerticalOptions="Center" />
+                    </Border>
 
                 </Grid>
 
@@ -79,19 +96,27 @@
                                 Color="#0c77ca" />
                         </Image.Source>
                     </Image>
-                    <Entry
-                        Grid.Column="1"
-                        IsPassword="True"
-                        Placeholder="Contraseña"
-                        Text=""
-                        TextColor="#02223b"
-                        VerticalOptions="Center" />
+                    <Border Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,0,10,0"                               
+                            HorizontalOptions="FillAndExpand"                                                                                        
+                            StrokeShape="RoundRectangle 8,8,8,8"
+                            StrokeThickness="1">
+                        <Entry Margin="5,0,0,0"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            IsPassword="True"
+                            Placeholder="Contraseña"
+                            Text="{Binding Password}"
+                            TextColor="#02223b"
+                            VerticalOptions="Center" />
+                    </Border>
 
                 </Grid>
                 <Button
                     Margin="0,30,0,0"
                     BackgroundColor="#005faa"
-                    Clicked="GoEmployeesView"
+                    Command="{Binding LoginCommand}"  
                     FontFamily="Bold"
                     FontSize="Small"
                     HeightRequest="44"
@@ -107,11 +132,46 @@
 
                 <Button
                     Margin="0,30,0,0"
-                    BackgroundColor="#f2f7ff"
-                    Clicked="GoEmployeesView"
-                    HeightRequest="44"
+                    BackgroundColor="#dae1ec"
+                    Command="{Binding GoCreateAccountViewCommand}"                    
+                    HeightRequest="50"
+                    FontFamily="bold"
                     Text="Crea tu cuenta de usuario"
-                    TextColor="#02223b" />
+                    TextColor="#5d5d5d">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                             Glyph="{x:Static faSolidIcons:FaSolidIcons.CircleUser}"
+                                         Size="50"
+                             Color="#8f8f8f"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <Label 
+                    Margin="0,30,0,0"
+                    TextColor="#5d5d5d"
+                    HorizontalTextAlignment="Center"
+                    Text="Iniciar sesión con huella digital"
+                    
+                    />
+
+                <Button
+                    Margin="0,0,0,0"
+                    BackgroundColor="White"
+                    Command="{Binding BiometricLoginCommand}"  
+                    FontFamily="Bold"
+                    FontSize="Small"
+                    HeightRequest="100"
+                    Text=""
+                    TextColor="#383838">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="SolidFont"
+                                         Size="60"
+                             Glyph="{x:Static faSolidIcons:FaSolidIcons.Fingerprint}"
+                             Color="#383838"/>
+                    </Button.ImageSource>
+
+                </Button>
+
 
             </VerticalStackLayout>
 
